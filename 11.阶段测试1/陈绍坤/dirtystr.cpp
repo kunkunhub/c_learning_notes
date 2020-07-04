@@ -19,10 +19,9 @@ int main(){
     for(int i=0;i<200;i++){
         if(x[i].n!=0&&x[i].n<min)min=x[i].n;    //找最少出现的字符的出现数量
     }
-    cout<<min<<endl;
-    for(int i=0;i<200;i++){
-        if(x[i].n>min){
-            cout<<x[i].c;
+    for(int i=0;i<s.length();i++){
+        if(x[s[i]].n>min){
+            cout<<s[i];
         }
     }
     return 0;

@@ -1,7 +1,7 @@
 #include<iostream>
 #include<cstdio>
 using namespace std;
-const int MAX=10000001;
+const int MAX=1000001;
 bool a[MAX];
 unsigned long long int sum=0;
 int main(){
