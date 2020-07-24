@@ -12,7 +12,15 @@
 </head>
 
 <body>
-    <h1>动态规划</h1>
+    <h1>快速小目录</h1>
+    <ol style="font-family: consolas;">
+        <li><a href="#动态规划"><big style="font-family: consolas;">动态规划</big></a></li>
+        <li><a href="#背包问题"><big style="font-family: consolas;">背包问题</big></a></li>
+        <li><a href="#背包问题代码"><big style="font-family: consolas;">背包问题代码</big></a></li>
+        <li><a href="#背包问题代码简化"><big style="font-family: consolas;">背包问题代码简化</big></a></li>
+        <li><a href="#猴子拔河代码"><big style="font-family: consolas;">猴子拔河代码</big></a></li>
+    </ol>
+    <h1 id="动态规划">动态规划</h1>
     <div>
         <h3>状态转移方程</h3>
         <p>
@@ -29,7 +37,7 @@
         <li><strong>确定决策并写出状态转移方程</strong>：相邻状态之间关系确定决策</li>
         <li><strong>寻找边界条件</strong>：递推式边界条件</li>
     </ul>
-    <h2>背包问题</h2>
+    <h2 id="背包问题">背包问题</h2>
     <h3>动态规划分析</h3>
     <ol>
         <li><strong>划分阶段</strong>以物品个数为阶段</li>
@@ -40,9 +48,10 @@
     <h4>表格</h4>
     <img src="biaoge.jpg" alt="动态规划表格" title="动态规划表格">
     <h3>代码</h3>
+    <h4 id="背包问题代码">背包问题代码</h4>
     <pre>
-        <code>
-            /*
+        <code style="font-family: consolas;" class="C++">
+/*
 输入格式：
 m n
 w1 c1
@@ -53,7 +62,7 @@ wm-1 cn-1
 wm cn
 */
 // 01背包
-#include<iostream>                                              //头文件
+#include&lt;iostream>                                              //头文件
 using namespace std;                                            //命名空间
 int w[200];                                                     //重量
 int c[200];                                                     //价值
@@ -85,7 +94,60 @@ int main(){                                                     //面函数
 */
         </code>
     </pre>
-
+    <h4 id="背包问题代码简化">背包问题代码简化</h4>
+    <pre>
+        <code class="C++" style="font-family: consolas;">
+#include&lt;iostream>
+using namespace std;
+int w[200];     //重量
+int c[200];     //价值
+int f[200];     //最优解一位数组
+int main(){     //面函数
+    int m, n;
+    cin>>m>>n;
+    for(int i=1;i<=n;i++)
+        cin>>w[i]>>c[i];
+    for(int i=1;i<=n;i++){
+        for(int j=m;j>=0;j--){  //!!!倒着走！！！不会结果叠加
+            if(j>=w[i]){
+                f[j]=max(f[j], f[j-w[i]]+c[i]);
+            }
+        }
+    }
+    cout<&lt;f[n][m];
+    return 0;
+}
+        </code>
+    </pre>
+    <br>
+    <br>
+    <h4 id="猴子拔河代码">猴子拔河代码</h4>
+    <pre>
+    <code class="C++" style="font-family: consolas;">
+#include&lt;iostream>
+using namespace std;
+int a[200], minn=2147483647;
+int dp[200];
+int main(){
+    int n=0, sum=0;
+    cin>>n;
+    for(int i;i<=n;i++){
+        cin>>a[i];
+        sum += a[i];
+    }
+    //动态规划
+    for(int i=1;i<=n;i++){
+        for(int j=sum/2;j>=a[i];j--){
+            dp[j]=max(dp[j], dp[j-a[i]]+a[i]);
+        }
+    }
+    //求两组猴子力量值的差
+    minn=sum-dp[sum/2]*2;
+    cout<&lt;minn;
+    return 0;
+}
+    </code>
+</pre>
 </body>
 
 </html>
