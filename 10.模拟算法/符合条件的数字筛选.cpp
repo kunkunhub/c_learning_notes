@@ -7,15 +7,15 @@ int main(){
         a=i;
         b=2*a;
         c=3*a;
-        whiel(a){
+        while(a){
             num[a%10]=1;
             a/=10;
         }
-        whiel(c){
+        while(c){
             num[c%10]=1;
             c/=10;
         }
-        whiel(c){
+        while(c){
             num[c%10]=1;
             c/=10;
         }
